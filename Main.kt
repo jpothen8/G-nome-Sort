@@ -2,14 +2,24 @@
 
 import kotlin.random.Random
 fun main() {
-        val testArray = IntArray(10000) { Random.nextInt(1, 1001) }
+        var test = 1
+        
+        var averageElapsed = 0
+        
+        while(test <= 50) {
+                val testArray = IntArray(10000) { Random.nextInt(1, 1001) }
 
-        println("Original List: " + testArray.contentToString())
+                println("Original List: " + testArray.contentToString())
 
-        GnomeSort().sort(testArray)
+                val elapsed = measureNanoTime {
+                        GnomeSort().sort(testArray)
+                }
 
-        println("Sorted List: " + testArray.contentToString())
-
+                averageElapsed = (averageElapsed + elapsed) / test
+                
+                test++
+        }
+        
         println("                                                                   \n" +
                 " ,adPPYb,d8 8b,dPPYba,   ,adPPYba,  88,dPYba,,adPYba,   ,adPPYba,  \n" +
                 "a8\"    `Y88 88P'   `\"8a a8\"     \"8a 88P'   \"88\"    \"8a a8P_____88  \n" +
@@ -18,4 +28,5 @@ fun main() {
                 " `\"YbbdP\"Y8 88       88  `\"YbbdP\"'  88      88      88  `\"Ybbd8\"'  \n" +
                 " aa,    ,88                                                        \n" +
                 "  \"Y8bbdP\"")
+        
 }
