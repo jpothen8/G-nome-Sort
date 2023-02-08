@@ -4,21 +4,22 @@ import kotlin.random.Random
 fun main() {
         var test = 1
         
-        var averageElapsed = 0
+        var totalElapsed = 0
         
         while(test <= 50) {
                 val testArray = IntArray(10000) { Random.nextInt(1, 1001) }
 
                 println("Original List: " + testArray.contentToString())
 
-                val elapsed = measureNanoTime {
-                        GnomeSort().sort(testArray)
-                }
+                val elapsed = measureNanoTime { GnomeSort().sort(testArray) }
 
-                averageElapsed = (averageElapsed + elapsed) / test
+                totalElapsed += elapsed
                 
                 test++
         }
+        
+        print("Average time in nanoseconds to run Gnome Sort with randomized array: ")
+        println(totalElapsed / 50)
         
         println("                                                                   \n" +
                 " ,adPPYb,d8 8b,dPPYba,   ,adPPYba,  88,dPYba,,adPYba,   ,adPPYba,  \n" +
